@@ -1,0 +1,32 @@
+%PDF-1.1
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1520 >>
+stream
+BT /F1 10 Tf 40 750 Td (Internship Experience) Tj 0 -14 Td (Software Development Intern – LeverageAxiom (Apr 2026 – Till now)) Tj 0 -14 Td (2020 – 2021) Tj 0 -14 Td (• Assisted in developing and testing web and application-based solutions using modern development practices.) Tj 0 -14 Td (• Reviewed newly developed applications to identify bugs, UI inconsistencies, and functional issues before deployment.) Tj 0 -14 Td (• Performed application testing, debugging, and quality assurance to ensure smooth user experience and proper functionality.) Tj 0 -14 Td (• Collaborated with development teams to report issues, suggest improvements, and validate feature performance.) Tj 0 -14 Td (• Gained hands-on experience in software development lifecycle, app validation, and real-world project workflows.) Tj 0 -20 Td (Projects) Tj 0 -14 Td (Speech-to-Text Recognition System (Jun 2025)) Tj 0 -14 Td (• Developed an AI-based speech recognition system using Generative AI techniques for accurate transcription.) Tj 0 -14 Td (• Implemented advanced audio preprocessing, noise reduction, and feature extraction pipelines.) Tj 0 -14 Td (• Trained and fine-tuned models on diverse datasets to improve real-world performance and accuracy.) Tj 0 -14 Td (• Integrated continuous learning approaches to stay aligned with latest advancements in speech AI.) Tj 0 -14 Td (Sentiment Analysis for Marketing (May 2025)) Tj 0 -14 Td (• Built an NLP-based sentiment analysis system to classify customer feedback into positive, negative, and neutral categories.) Tj 0 -14 Td (• Applied TF-IDF, word embeddings, Logistic Regression, SVM, and BERT models.) Tj 0 -14 Td (• Visualized sentiment trends to extract actionable business insights from unstructured data.) Tj 0 -14 Td (Multimodal Medical Diagnosis System (Sep 2025 – Oct 2025)) Tj 0 -14 Td (• Developed a multimodal AI system combining chest X-ray image analysis with clinical text processing using BERT.) Tj 0 -14 Td (• Integrated LLM-based automated report generation for clinician-friendly diagnostic insights.) Tj 0 -14 Td (• Achieved high model accuracy using transfer learning and hyperparameter tuning.) Tj 0 -14 Td (• Built RESTful APIs for healthcare system integration.) Tj 0 -14 Td (LegalScan – AI-Powered Legal Document Analyzer (Jan 2026 – Feb 2026)) Tj 0 -14 Td (• Developed an AI-based legal document analysis system to extract, summarize, and classify legal information from contracts and agreements.) Tj 0 -14 Td (• Implemented OCR and NLP techniques for processing scanned PDF documents and identifying key clauses and risks.) Tj 0 -14 Td (• Integrated transformer-based models for legal text understanding and automated document summarization.) Tj 0 -14 Td (• Built a user-friendly interface for generating structured legal insights in real time.) Tj 0 -14 Td (RAG-Based AI Chatbot System (Mar 2026 – Apr 2026)) Tj 0 -14 Td (• Built an intelligent chatbot using Retrieval-Augmented Generation (RAG) architecture for context-aware question answering.) Tj 0 -14 Td (• Implemented document ingestion, text chunking, vector embeddings, and semantic search using FAISS/ChromaDB.) Tj 0 -14 Td (• Integrated Large Language Models (LLMs) with retrieval pipelines to generate accurate responses from custom data sets.) Tj 0 -14 Td (• Developed REST APIs and an interactive UI for real-time conversational interaction with uploaded documents.) Tj 0 -20 Td (Technical Skills) Tj 0 -14 Td (• Programming Languages: Python, Java, C) Tj 0 -14 Td (• Core Concepts: Data Structures & Algorithms (DSA), Object-Oriented Programming) Tj 0 -14 Td (• Technologies: Artificial Intelligence, Machine Learning, NLP, Generative AI, RAG) Tj 0 -14 Td (• Libraries/Tools: NumPy, Pandas, Scikit-learn, LangChain, FAISS, ChromaDB, Streamlit) Tj 0 -14 Td (• Other Skills: Problem Solving, Analytical Thinking, REST APIs) ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000010 00000 n 
+0000000060 00000 n 
+0000000110 00000 n 
+0000000210 00000 n 
+0000000380 00000 n 
+trailer
+<< /Root 1 0 R /Size 6 >>
+startxref
+520
+%%EOF
