@@ -177,7 +177,7 @@ function App() {
 
         {/* Footer info */}
         <footer className="app-footer">
-          <p>© {new Date().getFullYear()} Virat Pundir. Crafted with <span>♥</span> & React.</p>
+          <p>&copy; {new Date().getFullYear()} Virat Pundir. Crafted with <span>&hearts;</span> & React.</p>
         </footer>
 
       </div>

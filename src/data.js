@@ -18,21 +18,21 @@ export const portfolio = {
     },
     {
       title: 'Multimodal Medical Diagnosis System',
-      date: 'Sep 2025 – Oct 2025',
+      date: 'Sep 2025 - Oct 2025',
       description:
         'Developed a multimodal AI system combining chest X-ray image analysis with clinical text processing using BERT. Integrated LLM-based automated report generation, achieved high model accuracy using transfer learning and hyperparameter tuning, and built RESTful APIs for healthcare system integration.',
       tech: ['Computer Vision', 'BERT', 'Transfer Learning']
     },
     {
-      title: 'LegalScan – AI-Powered Legal Document Analyzer',
-      date: 'Jan 2026 – Feb 2026',
+      title: 'LegalScan - AI-Powered Legal Document Analyzer',
+      date: 'Jan 2026 - Feb 2026',
       description:
         'Developed an AI-based legal document analysis system to extract, summarize, and classify legal information from contracts and agreements. Implemented OCR and transformer-based NLP techniques for clause identification and automated summarization. Built a user-friendly interface and trained the system on CUAD and public legal datasets.',
       tech: ['OCR', 'NLP', 'Transformers']
     },
     {
       title: 'RAG-Based AI Chatbot System',
-      date: 'Mar 2026 – Apr 2026',
+      date: 'Mar 2026 - Apr 2026',
       description:
         'Built an intelligent chatbot using Retrieval-Augmented Generation (RAG) architecture for context-aware question answering. Implemented document ingestion, text chunking, vector embeddings, and semantic search using FAISS/ChromaDB and integrated LLMs with retrieval pipelines to generate accurate responses.',
       tech: ['RAG', 'FAISS', 'ChromaDB', 'LangChain']
@@ -53,11 +53,11 @@ export const portfolio = {
     },
     {
       category: 'Libraries/Tools',
-      items: ['NumPy', 'Pandas', 'Scikit-learn']
+      items: ['NumPy', 'Pandas', 'Scikit-learn', 'LangChain', 'FAISS', 'ChromaDB', 'TensorFlow', 'Hugging Face', 'FastAPI']
     },
     {
       category: 'Other Skills',
-      items: ['Problem Solving', 'Analytical Thinking', 'Aptitude']
+      items: ['Problem Solving', 'Analytical Thinking', 'Aptitude', 'Research & Development', 'AI Model Optimization', 'API Integration']
     }
   ],
   about:
@@ -65,7 +65,7 @@ export const portfolio = {
   experience: {
     title: 'Software Development Intern',
     company: 'LeverageAxiom',
-    duration: 'Apr 2026 – Present',
+    duration: 'Apr 2026 - Present',
     summary: [
       'Assisted in developing and testing web and application-based solutions using modern development practices.',
       'Reviewed newly developed applications to identify bugs, UI inconsistencies, and functional issues before deployment.',

@@ -1,3 +1,5 @@
+import { pathToFileURL } from "node:url";
+
 function AIMLPortfolio() {
   const projects = [
     {
@@ -61,9 +63,9 @@ function AIMLPortfolio() {
   };
 }
 
-if (require.main === module) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const portfolio = AIMLPortfolio();
   console.log(JSON.stringify(portfolio, null, 2));
 }
 
-module.exports = AIMLPortfolio;
+export default AIMLPortfolio;
