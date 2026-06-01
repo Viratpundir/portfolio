@@ -6,35 +6,35 @@ export const portfolio = {
       title: 'Speech-to-Text Recognition System',
       date: 'Jun 2025',
       description:
-        'Developed an AI-based speech recognition system using Generative AI techniques for accurate transcription. Implemented advanced audio preprocessing, noise reduction, and feature extraction pipelines. Trained and fine-tuned models on diverse datasets to improve real-world performance and integrated continuous learning approaches.',
+        'Developed an AI-based speech recognition system using Generative AI techniques for accurate transcription. Implemented advanced audio preprocessing, noise reduction, and feature extraction pipelines.',
       tech: ['Python', 'Generative AI', 'Speech Processing']
     },
     {
       title: 'Sentiment Analysis for Marketing',
       date: 'May 2025',
       description:
-        'Built an NLP-based sentiment analysis system to classify customer feedback using TF-IDF, word embeddings, Logistic Regression, SVM, and BERT. Visualized sentiment trends to extract actionable business insights.',
+        'Built an NLP-based sentiment analysis system to classify customer feedback into positive, negative, and neutral categories. Applied TF-IDF, word embeddings, Logistic Regression, SVM, and BERT models.',
       tech: ['NLP', 'BERT', 'Scikit-learn']
     },
     {
       title: 'Multimodal Medical Diagnosis System',
-      date: 'Sep 2025 - Oct 2025',
+      date: 'Sep - Oct 2025',
       description:
-        'Developed a multimodal AI system combining chest X-ray image analysis with clinical text processing using BERT. Integrated LLM-based automated report generation, achieved high model accuracy using transfer learning and hyperparameter tuning, and built RESTful APIs for healthcare system integration.',
+        'Developed a multimodal AI system combining chest X-ray image analysis with clinical text processing using BERT.',
       tech: ['Computer Vision', 'BERT', 'Transfer Learning']
     },
     {
-      title: 'LegalScan - AI-Powered Legal Document Analyzer',
+      title: 'LegalScan - AI-Powered Analyzer',
       date: 'Jan 2026 - Feb 2026',
       description:
-        'Developed an AI-based legal document analysis system to extract, summarize, and classify legal information from contracts and agreements. Implemented OCR and transformer-based NLP techniques for clause identification and automated summarization. Built a user-friendly interface and trained the system on CUAD and public legal datasets.',
+        'Developed an AI-based legal document analysis system to extract and classify legal information. Implemented OCR and NLP techniques for processing scanned PDFs and identifying key clauses.',
       tech: ['OCR', 'NLP', 'Transformers']
     },
     {
       title: 'RAG-Based AI Chatbot System',
       date: 'Mar 2026 - Apr 2026',
       description:
-        'Built an intelligent chatbot using Retrieval-Augmented Generation (RAG) architecture for context-aware question answering. Implemented document ingestion, text chunking, vector embeddings, and semantic search using FAISS/ChromaDB and integrated LLMs with retrieval pipelines to generate accurate responses.',
+        'Built an intelligent chatbot using Retrieval-Augmented Generation (RAG) architecture for context-aware question answering. Implemented document ingestion, text chunking, vector embeddings, and semantic search using FAISS/ChromaDB.',
       tech: ['RAG', 'FAISS', 'ChromaDB', 'LangChain']
     }
   ],
@@ -49,23 +49,23 @@ export const portfolio = {
     },
     {
       category: 'Technologies',
-      items: ['Artificial Intelligence', 'Machine Learning', 'Natural Language Processing', 'Generative AI']
+      items: ['Artificial Intelligence', 'Machine Learning', 'NLP', 'Generative AI', 'RAG']
     },
     {
       category: 'Libraries/Tools',
-      items: ['NumPy', 'Pandas', 'Scikit-learn', 'LangChain', 'FAISS', 'ChromaDB', 'TensorFlow', 'Hugging Face', 'FastAPI']
+      items: ['NumPy', 'Pandas', 'Scikit-learn', 'LangChain', 'FAISS', 'ChromaDB', 'Streamlit']
     },
     {
       category: 'Other Skills',
-      items: ['Problem Solving', 'Analytical Thinking', 'Aptitude', 'Research & Development', 'AI Model Optimization', 'API Integration']
+      items: ['Problem Solving', 'Analytical Thinking', 'REST APIs']
     }
   ],
   about:
-    'Motivated and detail-oriented Software Engineer with a solid foundation in programming, problem-solving, and modern development practices. Enthusiastic about building efficient, scalable, and user-centric solutions. Currently seeking an internship opportunity to gain firsthand experience working on real-world corporate projects that impact a large user base. Eager to apply technical skills, learn from industry professionals, and contribute effectively to innovative development teams.',
+    'Motivated Computer Science undergraduate specializing in Artificial Intelligence, Machine Learning, and Natural Language Processing. Skilled in Python, Data Structures, and AI model development with hands-on experience building NLP, speech recognition, multimodal AI systems, and RAG-based applications. Passionate about developing scalable, user-centric solutions and seeking internship opportunities to apply technical expertise, contribute to impactful projects, and gain industry experience in AI-driven software development.',
   experience: {
     title: 'Software Development Intern',
     company: 'LeverageAxiom',
-    duration: 'Apr 2026 - Present',
+    duration: 'Apr 2024 - Present',
     summary: [
       'Assisted in developing and testing web and application-based solutions using modern development practices.',
       'Reviewed newly developed applications to identify bugs, UI inconsistencies, and functional issues before deployment.',

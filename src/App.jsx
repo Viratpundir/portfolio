@@ -1,186 +1,294 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { portfolio } from './data';
+
+const iconForSkill = {
+  'Programming Languages': 'code',
+  'Core Concepts': 'hub',
+  Technologies: 'neurology',
+  'Libraries/Tools': 'package',
+  'Other Skills': 'bolt'
+};
+
+const projectLabels = ['GenAI', 'NLP / ML', 'Medical AI', 'OCR / NLP', 'RAG / LangChain'];
+
+const categoryLabels = {
+  Technologies: 'AI & Machine Learning',
+  'Other Skills': 'Professional Skills'
+};
+
+function SymbolIcon({ name, className = '' }) {
+  return <span className={`material-symbols-outlined ${className}`}>{name}</span>;
+}
+
+function MagneticInner({ children, className = '' }) {
+  return <span className={`magnetic-inner ${className}`}>{children}</span>;
+}
+
+function RevealTitle({ kicker, title, center = false }) {
+  return (
+    <div className={`reveal-container title-block ${center ? 'title-block-center' : ''}`}>
+      {kicker && <p className="section-kicker">{kicker}</p>}
+      <h2>{title}</h2>
+      <span className="reveal-line" />
+    </div>
+  );
+}
 
 function App() {
   const { name, headline, about, skills, projects, experience, contact } = portfolio;
-  const [activeSection, setActiveSection] = useState('home');
 
-  // Simple scroll tracker to highlight the active section in navigation
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 160;
-
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            break;
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
           }
-        }
+        });
+      },
+      { threshold: 0.14 }
+    );
+
+    const revealItems = document.querySelectorAll('.reveal-container');
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const onScroll = () => {
+      document.body.classList.toggle('scrolled', window.scrollY > 50);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+
+    const resetMagnet = (button) => {
+      button.style.setProperty('--tx', '0px');
+      button.style.setProperty('--ty', '0px');
+      const inner = button.querySelector('.magnetic-inner');
+      if (inner) {
+        inner.style.setProperty('--itx', '0px');
+        inner.style.setProperty('--ity', '0px');
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onMouseMove = (event) => {
+      const threshold = 100;
+      document.querySelectorAll('.magnetic-button').forEach((button) => {
+        const rect = button.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distanceX = event.clientX - centerX;
+        const distanceY = event.clientY - centerY;
+        const distance = Math.hypot(distanceX, distanceY);
+
+        if (distance < threshold) {
+          const power = (threshold - distance) / threshold;
+          button.style.setProperty('--tx', `${distanceX * 0.4 * power}px`);
+          button.style.setProperty('--ty', `${distanceY * 0.4 * power}px`);
+
+          const inner = button.querySelector('.magnetic-inner');
+          if (inner) {
+            inner.style.setProperty('--itx', `${distanceX * 0.2 * power}px`);
+            inner.style.setProperty('--ity', `${distanceY * 0.2 * power}px`);
+          }
+        } else {
+          resetMagnet(button);
+        }
+      });
+    };
+
+    const onMouseLeave = () => {
+      document.querySelectorAll('.magnetic-button').forEach(resetMagnet);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseleave', onMouseLeave);
+
+    return () => {
+      revealItems.forEach((item) => revealObserver.unobserve(item));
+      revealObserver.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseleave', onMouseLeave);
+    };
   }, []);
 
   return (
     <>
-      {/* Floating Glassmorphic Header & Navbar */}
-      <header className="app-header">
-        <div className="nav-container">
-          <a href="#home" className="logo">
-            {name.split(' ')[0]}<span>{name.split(' ')[1] ? ` ${name.split(' ')[1]}` : ''}</span>
+      <div className="pillar-line pillar-left" />
+      <div className="pillar-line pillar-left-inner" />
+      <div className="pillar-line pillar-right-inner" />
+      <div className="pillar-line pillar-right" />
+
+      <header className="site-header">
+        <a className="brand" href="#home" aria-label={`${name} home`}>
+          <SymbolIcon name="architecture" />
+          <span>{name}</span>
+        </a>
+        <nav className="site-nav" aria-label="Primary navigation">
+          <a href="#about">Profile</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a className="icon-link magnetic-button" href="#contact" aria-label="Contact">
+            <MagneticInner>
+              <SymbolIcon name="terminal" />
+            </MagneticInner>
           </a>
-          <nav className="nav-links">
-            <a href="#home" className={activeSection === 'home' ? 'active' : ''}>Home</a>
-            <a href="#about" className={activeSection === 'about' ? 'active' : ''}>About</a>
-            <a href="#experience" className={activeSection === 'experience' ? 'active' : ''}>Experience</a>
-            <a href="#projects" className={activeSection === 'projects' ? 'active' : ''}>Projects</a>
-            <a href="#skills" className={activeSection === 'skills' ? 'active' : ''}>Skills</a>
-            <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>Contact</a>
-          </nav>
-        </div>
+        </nav>
       </header>
 
-      {/* Main Application Shell */}
-      <div className="app-shell">
-        
-        {/* HERO SECTION */}
-        <section id="home" className="hero">
-          <div className="hero-glow"></div>
-          <h1>{name}</h1>
-          <p>{headline}</p>
-          <div className="hero-actions">
-            <a href="#projects" className="btn btn-primary">
-              View Projects
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-            <a href="#contact" className="btn btn-secondary">
-              Get in Touch
-            </a>
-          </div>
-        </section>
-
-        {/* SUMMARY / ABOUT SECTION */}
-        <section id="about" className="section">
-          <div className="section-title-wrap">
-            <div className="section-subtitle">Discovery</div>
-            <h2>Professional Summary</h2>
-          </div>
-          <div className="card">
-            <p>{about}</p>
-          </div>
-        </section>
-
-        {/* EXPERIENCE SECTION */}
-        <section id="experience" className="section">
-          <div className="section-title-wrap">
-            <div className="section-subtitle">Career Path</div>
-            <h2>Professional Experience</h2>
-          </div>
-          <div className="card">
-            <div className="experience-container">
-              <div className="experience-item">
-                <div className="experience-dot"></div>
-                <div className="experience-header">
-                  <div>
-                    <h3>{experience.title}</h3>
-                    <div className="experience-duration">{experience.duration}</div>
-                  </div>
-                  <span className="experience-meta">{experience.company}</span>
-                </div>
-                <ul className="experience-list">
-                  {experience.summary.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
+      <main>
+        <section className="hero-section" id="home">
+          <div className="hero-orbit reveal-container" aria-hidden="true">
+            <div className="hero-glow" />
+            <div className="orbit-shell floating-element">
+              <div className="orbit-ring orbit-ring-fast" />
+              <div className="orbit-ring orbit-ring-slow" />
+              <div className="orbit-core">
+                <SymbolIcon name="hub" />
               </div>
+              <span className="orbit-node" />
+            </div>
+          </div>
+
+          <div className="reveal-container hero-title-wrap">
+            <h1>{name}</h1>
+            <span className="reveal-line" />
+          </div>
+          <p className="hero-copy reveal-container">{headline}</p>
+          <div className="hero-actions reveal-container">
+            <a className="btn btn-primary magnetic-button" href={contact.resume} download>
+              <MagneticInner>Download Resume</MagneticInner>
+            </a>
+            <a className="btn btn-secondary magnetic-button" href="#projects">
+              <MagneticInner>View Projects</MagneticInner>
+            </a>
+          </div>
+        </section>
+
+        <section className="section discovery-section" id="about">
+          <div className="split-layout">
+            <div className="visual-panel reveal-container">
+              <div className="panel-offset" />
+              <div className="glass-card square-panel neural-network-bg">
+                <div className="inner-frame">
+                  <SymbolIcon name="psychology" />
+                </div>
+              </div>
+            </div>
+            <div className="section-copy">
+              <RevealTitle kicker="Profile" title="Discovery" />
+              <div className="prose reveal-container">
+                <p>{about}</p>
+              </div>
+              <blockquote className="quote-panel reveal-container">
+                The soul of the machine is built with the precision of logic and the fluidity of data.
+              </blockquote>
             </div>
           </div>
         </section>
 
-        {/* PROJECTS SECTION */}
-        <section id="projects" className="section">
-          <div className="section-title-wrap">
-            <div className="section-subtitle">Showcase</div>
-            <h2>Featured Projects</h2>
-          </div>
-          <div className="grid project-grid">
-            {projects.map((project) => (
-              <div key={project.title} className="project-card">
-                {project.date && <div className="project-date">{project.date}</div>}
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="tags">
-                  {project.tech.map((tech) => (
-                    <span key={tech}>{tech}</span>
-                  ))}
-                </div>
-              </div>
+        <section className="section" id="skills">
+          <RevealTitle title="Technical Core" center />
+          <div className="skills-grid">
+            {skills.map((skill) => (
+              <article className="glass-card skill-card reveal-container" key={skill.category}>
+                <SymbolIcon name={iconForSkill[skill.category] || 'deployed_code'} />
+                <h3>{categoryLabels[skill.category] || skill.category}</h3>
+                <p>{skill.items.join(', ')}</p>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* TECHNICAL SKILLS SECTION */}
-        <section id="skills" className="section">
-          <div className="section-title-wrap">
-            <div className="section-subtitle">Expertise</div>
-            <h2>Technical Skills</h2>
+        <section className="experience-section" id="experience">
+          <RevealTitle title="Professional Experience" center />
+          <div className="timeline">
+            <div className="timeline-pillar" />
+            <article className="timeline-item reveal-container">
+              <div className="timeline-content">
+                <h3>{experience.company}</h3>
+                <p className="timeline-meta">
+                  {experience.title} | {experience.duration}
+                </p>
+                <ul>
+                  {experience.summary.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="timeline-token" aria-hidden="true">
+                <SymbolIcon name="token" />
+              </div>
+              <div className="timeline-spacer" />
+            </article>
           </div>
-          <div className="card">
-            <div className="grid skills-grid">
-              {skills.map((skill) => (
-                <div key={skill.category} className="skill-group">
-                  <h3>{skill.category}</h3>
-                  <div className="skill-items">
-                    {skill.items.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
+        </section>
+
+        <section className="section" id="projects">
+          <RevealTitle title="The Showcase" center />
+          <div className="project-grid">
+            {projects.map((project, index) => {
+              const isFeature = index === projects.length - 1;
+              return (
+                <article
+                  className={`project-card reveal-container ${isFeature ? 'project-card-featured' : ''}`}
+                  key={project.title}
+                >
+                  <div className={isFeature ? 'neural-network-bg project-text feature-text' : 'abstract-geometry'} />
+                  <div className="project-shade" />
+                  <div className="project-content">
+                    {isFeature && <SymbolIcon name="smart_toy" className="project-feature-icon" />}
+                    <div className="project-tags">
+                      <span>{project.date}</span>
+                      <span>{projectLabels[index] || project.tech[0]}</span>
+                    </div>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
                   </div>
-                </div>
-              ))}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="contact-section" id="contact">
+          <div className="contact-geometry" />
+          <div className="contact-inner">
+            <RevealTitle title="Get In Touch" center />
+            <p className="contact-copy reveal-container">
+              Let&apos;s build something remarkable together! Reach out through the neural links below.
+            </p>
+            <div className="contact-grid reveal-container">
+              <a className="magnetic-button" href={`mailto:${contact.email}`}>
+                <MagneticInner className="contact-link-inner">
+                  <SymbolIcon name="mail" /> Email Me
+                </MagneticInner>
+              </a>
+              <a className="magnetic-button" href={contact.linkedin} target="_blank" rel="noreferrer">
+                <MagneticInner className="contact-link-inner">
+                  <SymbolIcon name="link" /> LinkedIn
+                </MagneticInner>
+              </a>
+              <a className="magnetic-button" href={contact.github} target="_blank" rel="noreferrer">
+                <MagneticInner className="contact-link-inner">
+                  <SymbolIcon name="code" /> GitHub
+                </MagneticInner>
+              </a>
+              <a className="magnetic-button" href={contact.resume} download>
+                <MagneticInner className="contact-link-inner">
+                  <SymbolIcon name="download" /> Resume
+                </MagneticInner>
+              </a>
             </div>
           </div>
         </section>
+      </main>
 
-        {/* CONTACT / CONNECT SECTION */}
-        <section id="contact" className="section contact-section card">
-          <div className="section-title-wrap">
-            <div className="section-subtitle">Let's Connect</div>
-            <h2>Get In Touch</h2>
-          </div>
-          <p>I am open to internships, industry collaborations, and AI/ML project opportunities. Let's build something remarkable together!</p>
-          <div className="contact-actions">
-            <a href={`mailto:${contact.email}`} className="btn btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              Email Me
-            </a>
-            <a href={contact.linkedin} target="_blank" rel="noreferrer" className="btn btn-secondary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              LinkedIn
-            </a>
-            <a href={contact.github} target="_blank" rel="noreferrer" className="btn btn-secondary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              GitHub
-            </a>
-            <a href={contact.resume} download className="btn btn-secondary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              Download Resume
-            </a>
-          </div>
-        </section>
-
-        {/* Footer info */}
-        <footer className="app-footer">
-          <p>&copy; {new Date().getFullYear()} Virat Pundir. Crafted with <span>&hearts;</span> & React.</p>
-        </footer>
-
-      </div>
+      <footer className="site-footer">
+        <div className="footer-brand reveal-container">
+          <SymbolIcon name="architecture" />
+          <span>The Digital Sanctuary</span>
+        </div>
+        <p className="reveal-container">&copy; 2024 {name} &bull; Crafted with intelligence &bull; All rights preserved</p>
+      </footer>
     </>
   );
 }
